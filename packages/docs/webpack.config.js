@@ -73,6 +73,7 @@ var config = appConfig(__dirname, {
     historyApiFallback: {
       index: '/',
     },
+    disableHostCheck: true,
   },
 })
 
