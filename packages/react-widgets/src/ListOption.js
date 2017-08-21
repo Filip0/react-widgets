@@ -33,7 +33,7 @@ class ListOption extends React.Component {
       'rw-state-disabled': disabled,
     };
 
-    let id = focused ? activeId : undefined;
+    let id = activeId;
 
     return (
       <Tag

@@ -349,7 +349,7 @@ class Multiselect extends React.Component {
     if (!open)
       active = focusedTag ? this.activeTagId : '';
     else if (focusedItem || this.allowCreate())
-      active = this.activeOptionId
+      active = focusedItem.hasOwnProperty('id') ? `${this.activeOptionId}_${focusedItem.id}` : this.activeOptionId
 
     return (
       <MultiselectInput
@@ -357,7 +357,7 @@ class Multiselect extends React.Component {
         {...inputProps}
         autoFocus={autoFocus}
         tabIndex={tabIndex || 0}
-        role='listbox'
+        role='combobox'
         aria-expanded={!!open}
         aria-busy={!!busy}
         aria-owns={ownedIds}
@@ -376,7 +376,7 @@ class Multiselect extends React.Component {
   }
 
   renderList(messages) {
-    let { inputId, activeOptionId, listId, accessors } = this;
+    let { activeOptionId, listId, accessors } = this;
     let { open } = this.props;
     let { focusedItem } = this.state;
 
@@ -395,7 +395,7 @@ class Multiselect extends React.Component {
         onSelect={this.handleSelect}
         onMove={this.handleScroll}
         aria-live='polite'
-        aria-labelledby={inputId}
+        aria-label='LABEL'
         aria-hidden={!open}
         messages={{
           emptyList: this._lengthWithoutValues
@@ -416,9 +416,6 @@ class Multiselect extends React.Component {
         id={this.notifyId}
         role="status"
         className='rw-sr'
-        aria-live='assertive'
-        aria-atomic="true"
-        aria-relevant="additions removals text"
       >
         {focused && (
           dataItems.length

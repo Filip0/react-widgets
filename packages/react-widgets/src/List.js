@@ -124,6 +124,10 @@ class List extends React.Component {
 
     let isFocused = focusedItem === item;
 
+    if (item.hasOwnProperty('id')) {
+      activeId = `${activeId}_${item.id}`;
+    }
+
     return (
       <Option
         dataItem={item}
