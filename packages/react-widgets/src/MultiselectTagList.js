@@ -60,7 +60,7 @@ class MultiselectTagList extends React.Component {
           return (
             <MultiselectTag
               key={i}
-              id={isFocused ? activeId : null }
+              id={`${activeId}_${item.id}`}
               value={item}
               focused={isFocused}
               onClick={this.handleDelete}

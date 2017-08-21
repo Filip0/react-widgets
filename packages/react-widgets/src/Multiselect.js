@@ -344,11 +344,11 @@ class Multiselect extends React.Component {
     let disabled = this.props.disabled === true
     let readOnly = this.props.readOnly === true
 
-    let active;
+    let active = '';
 
-    if (!open)
-      active = focusedTag ? this.activeTagId : '';
-    else if (focusedItem || this.allowCreate())
+    if (focusedTag)
+      active = focusedTag.hasOwnProperty('id') ? `${this.activeTagId}_${focusedTag.id}` : this.activeTagId;
+    else if (open && focusedItem || this.allowCreate())
       active = focusedItem.hasOwnProperty('id') ? `${this.activeOptionId}_${focusedItem.id}` : this.activeOptionId
 
     return (
