@@ -348,7 +348,7 @@ class Multiselect extends React.Component {
 
     if (focusedTag)
       active = focusedTag.hasOwnProperty('id') ? `${this.activeTagId}_${focusedTag.id}` : this.activeTagId;
-    else if (open && focusedItem || this.allowCreate())
+    else if (open && (focusedItem || this.allowCreate()))
       active = focusedItem.hasOwnProperty('id') ? `${this.activeOptionId}_${focusedItem.id}` : this.activeOptionId
 
     return (
@@ -415,6 +415,8 @@ class Multiselect extends React.Component {
       <span
         id={this.notifyId}
         role="status"
+        aria-live="polite"
+        aria-atomic="true"
         className='rw-sr'
       >
         {focused && (
